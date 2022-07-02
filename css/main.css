@@ -1,0 +1,228 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 62.5%;
+    font-family: 'Staatliches', cursive;
+}
+
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&display=swap');
+
+.window{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.screen{
+    background-color: black;
+    /* display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: space-around; */
+}
+
+.front, .center, .back, .protector{
+    position: absolute;
+    /* width: 100%;
+    height: 100%; */
+}
+
+/* FONDO */
+
+.bg{
+    width: 100%;
+    height: 100%;
+    background:url("/media/box.jpg");
+    background-size: 400% 100%;
+    /* background-repeat: no-repeat; */
+}
+
+
+.front{
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: space-around;
+} 
+
+.center{
+    z-index: 2;
+    position: absolute;
+} 
+
+.pjs,.board{
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    /* display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around; */
+}
+
+.board{
+    z-index: 1;
+    width: 100%;
+    height: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.boardc{
+    width: 70vh;
+    height: 50vh;
+    /* background-color: yellow; */
+    position: absolute;
+    top: 10vh
+}
+
+.pjs{
+    z-index: 5;
+}
+
+.pji,.pjd{
+    height: 30%;
+    width: 30%;
+    position: absolute;
+    bottom: 30%;
+}
+
+/* PERSONAJES */
+
+.pji{
+    /* background-color: red; */
+    left: 12%;
+    z-index: 1;
+    /* background-image: url(/media/pj1.png); */
+    /* background-size: 300%; */
+}
+
+.pjd{
+    /* background-color: green; */
+    right: 12%;
+    z-index: 2;
+    /* background-image: url(/media/pj2.png);
+    background-size: 300%; */
+}
+
+.back{
+    background-color: purple;
+    z-index: 0;
+}
+
+.caja{
+    background-color: black;
+    width: 94%;
+    height: 27%;
+    margin-bottom: 3%;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: white;
+}
+
+/*
+    PROTECTOR
+*/
+
+.protector{
+    background-color: black;
+    z-index: 7;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    /*
+    
+    background-color: rgba(7, 0, 0, 0.750);
+    */
+}
+
+.ini{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.total{
+    width:90%;
+    background-color: black;
+    border: 1px solid white;
+}
+
+.progre{
+    width: 0%;
+    background-color: green;
+    color: white;
+}
+
+.noti{
+    background-color: none;
+}
+
+@media only screen and (max-width: 100vh) {
+    /* Height Superior */
+    .screen,.front, .center, .back, .protector{
+      width: 100vw;
+      height: 100vw;
+      /* background-color: red; */
+    }
+    
+    .caja{
+        padding: 2vw;
+        font-size: 4vw;
+        border: 1vw solid white;
+    }
+
+    .ini{
+        width: 80vw;
+        height: 80vw;
+    }
+    
+}
+
+@media only screen and (max-height: 100vw) {
+    /* Width Superior */
+    .screen,.front, .center, .back, .protector{
+        width: 100vh;
+        height: 100vh;
+        /* background-color: green; */
+    }
+
+    .caja{
+        padding: 2vh;
+        font-size: 4vh;
+        border: 1vh solid white;
+    }
+
+    .ini{
+        width: 80vh;
+        height: 80vh;
+    }
+}
+
+
+/* debug */
+
+.fps{
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+}
