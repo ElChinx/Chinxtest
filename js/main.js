@@ -1,79 +1,88 @@
-function ppp(){
+window.onload = lol;
+
+// var urlweb = {
+//      "default":{
+//           "voice":"media/audio/voice.wav"
+//      },
+//      "chinx":{
+//           "sprite":"/media/pj/chinxtest/base.png",
+//           "voice":"/media/pj/chinxtest/voice.wav"
+//      },
+//      "music":{
+//           "test":"/media/audio/test.mp3",
+//           "fish":"/media/audio/fish.mp3"
+//      }
+// };
+
+// var urlall = {
+//      "default":{
+//           "voice":"https://webchinx.000webhostapp.com/media/audio/voice.wav"
+//      },
+//      "chinx":{
+//           // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
+//           "voice":"https://webchinx.000webhostapp.com/media/pj/chinxtest/voice.wav"
+//      },
+//      "music":{
+//           "test":"https://webchinx.000webhostapp.com/media/audio/test.mp3",
+//           "fish":"https://webchinx.000webhostapp.com/media/audio/fish.mp3"
+//      }
+// };
 
 
-     
-     var music = new Audio("https://webchinx.000webhostapp.com/media/audio/fish.mp3");
-     document.getElementById("progre").innerText = "Cargando...";
-     var isLoaded = music.complete && music.naturalHeight !== 0;
-     alert(isLoaded);
-     document.getElementById("progre").style.width = "100%";
-     music.play();
-}
+let urlHome = "https://elchinx.github.io/Chinxtest";
 
-var urlweb = {
-     "default":{
-          "voice":"media/audio/voice.wav"
-     },
-     "chinx":{
-          "sprite":"/media/pj/chinxtest/base.png",
-          "voice":"/media/pj/chinxtest/voice.wav"
-     },
-     "music":{
-          "test":"/media/audio/test.mp3",
-          "fish":"/media/audio/fish.mp3"
-     }
-};
-
-var urlall = {
-     "default":{
-          "voice":"https://webchinx.000webhostapp.com/media/audio/voice.wav"
-     },
-     "chinx":{
+var url = {          
           // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
-          "voice":"https://webchinx.000webhostapp.com/media/pj/chinxtest/voice.wav"
-     },
-     "music":{
-          "test":"https://webchinx.000webhostapp.com/media/audio/test.mp3",
-          "fish":"https://webchinx.000webhostapp.com/media/audio/fish.mp3"
-     }
+          "chinx_voice": urlHome+"/media/pj/chinx/voice.wav",
+          "sans_voice": urlHome+"/media/pj/chinx/sans.mp3",
+          "default_voice": urlHome+"/media/audio/voice.wav",
+          "audio_test": urlHome+"/media/audio/test.mp3",
+          "audio_fish": urlHome+"/media/audio/fish.mp3"
 };
 
-
-var url = {
-          "default_voice":"https://webchinx.000webhostapp.com/media/audio/voice.wav",
-          // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
-          "chinx_voice":"https://webchinx.000webhostapp.com/media/pj/chinxtest/voice.wav",
-          "audio_test":"https://webchinx.000webhostapp.com/media/audio/test.mp3",
-          "audio_fish":"https://webchinx.000webhostapp.com/media/audio/fish.mp3"
-     
-};
-
-var muss = {
-     0:undefined,
-     1:undefined,
-     2:undefined,
-     3:undefined
-};
+var muss = new Object;
 // let afk = undefined;
 let cn;
+var pol = 0;
+     var tot = 0;
 function lol(){
-     var por = 0;
-     var pol = 0;
-     var tot = contar();
+     document.getElementById("progre").innerText = "Cargando...";
+     Object.entries(url).forEach(e => {
+               tot++;
+     });
+
      Object.entries(url).forEach(f => {
-          console.log(f[1]);
-          muss[pol] = new Audio(f[1]);
-          muss[pol].muted = true;
-          muss[pol].play();
+          // muss[pol] = new Audio(f[1]);
+          $(muss[pol]).ready(function() {
+               $.ajax({
+                    url:f[1],
+                    success: function() {
+                         document.getElementById("progre").style.width = (((pol)*100)/tot) + "%"; 
+                         if(pol == tot){
+                              document.getElementById("progre").innerText = "Completado :³";
+                              document.getElementById("starting").innerHTML = "<button id='iniciarTesteo'>INICIAR</button>";
+                              document.getElementById("iniciarTesteo").addEventListener("click",function(){
+                                   document.getElementById("ini").style.animation = "woo";
+                                   document.getElementById("ini").style.animationDuration = 1;
+                                   document.getElementById("protector").style.display = "none";
+                                   setTimeout(() => {
+                                        play();
+                                   }, 1500);
+                              }) ; 
+
+                         }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                         alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                    }
+               });
+          });
           pol++;
-          cn = setInterval(() => {
-              if(muss[por].played == true){
-               pol++;
-               clearInterval(cn);
-              }
-          }, 1000);
+        
+          
      });
 }
+
 
 function contar() {
      let c = 0
@@ -96,7 +105,7 @@ var control = {
      "noInterrupt":false,       // Valor para evitar ser interrumpido
      "page":0,                  // Pagina actual
      "paget":800,              // TIEMPO DE ESPERA
-     "voice":url["default"]["voice"],
+     "voice":url["default_voice"],
      "trackv":undefined,
      "voiceDefault":false,
      "voiceVolume":0.1,
@@ -133,11 +142,11 @@ var control = {
 var sound = {
      "theme":{
           "test":{
-               "src":url["music"]["test"],
+               "src":url["music_test"],
                "track":undefined
           },
           "fish":{
-               "src":url["music"]["fish"],
+               "src":url["music_fish"],
                "track":undefined
           }
      },
@@ -156,8 +165,8 @@ var talking = {};
 
 var pjs = {
      "chinx":{
-          "sprite":url["chinx"]["sprite"],
-          "voice":url["chinx"]["voice"],
+          "sprite":url["chinx_sprite"],
+          "voice":url["chinx_voice"],
           "track":undefined,
           "size":55,
           "box":"pj1",
@@ -313,22 +322,24 @@ function bg(array){
 
 // FPS
 
-let fps = document.getElementById('fps_data');
-let fps_control = document.getElementById('fps_control');
+// let fps = document.getElementById('fps_data');
+// let fps_control = document.getElementById('fps_control');
 
-setInterval(() => {
-     fps.innerHTML = "";
-     Object.entries(control).forEach(e => {
-          const [k,v] = e;
-          fps.innerHTML += k + " : "+ v +"<br>";
-     });
-     fps.innerHTML += "--------------<br>";
-     fps_control.innerHTML = "<span id='ctrl'>"+control.state+"</span>";
-     Object.entries(talking).forEach(e => {
-          const [k,v] = e;
-          fps.innerHTML += k + " : "+ v +"<br>";
-     });
-}, 500);
+// setInterval(() => {
+//      fps.innerHTML = "";
+//      Object.entries(control).forEach(e => {
+//           const [k,v] = e;
+//           fps.innerHTML += k + " : "+ v +"<br>";
+//      });
+//      fps.innerHTML += "--------------<br>";
+//      fps_control.innerHTML = "<span id='ctrl'>"+control.state+"</span>";
+//      Object.entries(talking).forEach(e => {
+//           const [k,v] = e;
+//           fps.innerHTML += k + " : "+ v +"<br>";
+//      });
+// }, 500);
+
+// document.getElementById('fps_control').addEventListener("click",play);
 
 // FIN DE FPS
 
@@ -380,7 +391,6 @@ function bs(p){
 
 // Control
 
-document.getElementById('fps_control').addEventListener("click",play);
 
 function play(){
      control.state = "play";

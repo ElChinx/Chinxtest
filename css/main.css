@@ -9,6 +9,11 @@ body{
     font-family: 'Staatliches', cursive;
 }
 
+@keyframes woo {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+
 /* FONTS */
 
 @import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
