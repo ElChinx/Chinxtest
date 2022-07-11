@@ -464,9 +464,9 @@ function sleep(){
           protector.style.zIndex = 10;
           protector.style.backgroundImage = "url("+url['win_bg']+")";
           protector.style.backgroundSize = "100%";
-          protector.innerHTML = "<div id='final' class='final'>Muchas gracias</div>";
           setTimeout(() => {
-               protector.innerHTML += "<div id='co' class='co'>Este dispositivo se autodestruirá en </div><div id='sec' class='sec'></div>";
+               protector.innerHTML = "<div id='final' class='final'>Muchas gracias</div>";
+               protector.innerHTML += "<div id='co' class='co'>Este dispositivo se autodestruirá en </div><div id='sec' class='sec'>00:05</div>";
                autodestrucc();
           }, 2000);
           musics("test","play",false,0.2);
@@ -522,7 +522,6 @@ function screenHide(){
  }
 
  function condNext(){
-     control.reproAuto = false;
      if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
           next();
      }

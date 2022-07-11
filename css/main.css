@@ -174,7 +174,7 @@ body{
 
 .progre{
     width: 0%;
-    
+    font-family: 'Courier New', Courier, monospace;
     background-color: green;
     color: white;
 }
@@ -231,7 +231,7 @@ body{
         padding-top: 55vw;
         font-size: 9vw;
         color: white;
-        font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: 'Courier New', Courier, monospace;
     }
 
     .co{
@@ -280,7 +280,7 @@ body{
         padding-top: 55vh;
         font-size: 9vh;
         color: white;
-        font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: 'Courier New', Courier, monospace;
     }
 
     .co{
