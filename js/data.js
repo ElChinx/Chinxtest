@@ -1,4 +1,4 @@
-let urlHome = "";
+let urlHome = "https://elchinx.github.io/Chinxtest/";
 
 var url = {          
           // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
