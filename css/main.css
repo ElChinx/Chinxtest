@@ -89,8 +89,8 @@ body{
 }
 
 .boardc{
-    width: 70vh;
-    height: 50vh;
+    width: 100%;
+    height: 100%;
     /* background-color: yellow; */
     position: absolute;
     top: 10vh
@@ -219,7 +219,7 @@ body{
     }
     
     .progre{
-        font-size: 20vw;
+        font-size: 7vw;
     }
 
     #iniciarTesteo{
