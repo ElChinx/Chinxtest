@@ -1,50 +1,11 @@
 window.onload = lol;
 
-// var urlweb = {
-//      "default":{
-//           "voice":"media/audio/voice.wav"
-//      },
-//      "chinx":{
-//           "sprite":"/media/pj/chinxtest/base.png",
-//           "voice":"/media/pj/chinxtest/voice.wav"
-//      },
-//      "music":{
-//           "test":"/media/audio/test.mp3",
-//           "fish":"/media/audio/fish.mp3"
-//      }
-// };
-
-// var urlall = {
-//      "default":{
-//           "voice":"https://webchinx.000webhostapp.com/media/audio/voice.wav"
-//      },
-//      "chinx":{
-//           // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
-//           "voice":"https://webchinx.000webhostapp.com/media/pj/chinxtest/voice.wav"
-//      },
-//      "music":{
-//           "test":"https://webchinx.000webhostapp.com/media/audio/test.mp3",
-//           "fish":"https://webchinx.000webhostapp.com/media/audio/fish.mp3"
-//      }
-// };
-
-
-let urlHome = "https://elchinx.github.io/Chinxtest";
-
-var url = {          
-          // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
-          "chinx_voice": urlHome+"/media/pj/chinx/voice.wav",
-          "sans_voice": urlHome+"/media/pj/chinx/sans.mp3",
-          "default_voice": urlHome+"/media/audio/voice.wav",
-          "audio_test": urlHome+"/media/audio/test.mp3",
-          "audio_fish": urlHome+"/media/audio/fish.mp3"
-};
-
 var muss = new Object;
 // let afk = undefined;
 let cn;
 var pol = 0;
-     var tot = 0;
+var tot = 0;
+
 function lol(){
      document.getElementById("progre").innerText = "Cargando...";
      Object.entries(url).forEach(e => {
@@ -57,19 +18,14 @@ function lol(){
                $.ajax({
                     url:f[1],
                     success: function() {
+                         pol++;
                          document.getElementById("progre").style.width = (((pol)*100)/tot) + "%"; 
                          if(pol == tot){
+                              console.log("si");
+                              setActor(["chinx",56,"pj1"]);
                               document.getElementById("progre").innerText = "Completado :³";
                               document.getElementById("starting").innerHTML = "<button id='iniciarTesteo'>INICIAR</button>";
-                              document.getElementById("iniciarTesteo").addEventListener("click",function(){
-                                   document.getElementById("ini").style.animation = "woo";
-                                   document.getElementById("ini").style.animationDuration = 1;
-                                   document.getElementById("protector").style.display = "none";
-                                   setTimeout(() => {
-                                        play();
-                                   }, 1500);
-                              }) ; 
-
+                              document.getElementById("iniciarTesteo").addEventListener("click",btnStart); 
                          }
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -77,12 +33,27 @@ function lol(){
                     }
                });
           });
-          pol++;
+          
         
           
      });
 }
 
+function btnStart(){
+     document.getElementById("iniciarTesteo").removeEventListener("click",btnStart);
+     document.getElementById("ini").style.animation = "woo";
+     document.getElementById("ini").style.animationDuration = 1;
+     screenHide();
+     setTimeout(() => {
+          document.getElementById("protector").innerHTML = "";
+          document.getElementById("protector").style.opacity = 1;
+          document.getElementById("protector").style.backgroundColor = "rgba(0, 0, 0, 0)";
+          // document.getElementById(control.btnNext).addEventListener("click",condNext);
+          document.getElementById(control.btnNext).onmousedown = btnDownAct;
+          document.getElementById(control.btnNext).onmouseup = btnUpAct;
+          play();
+     }, 1500);
+}
 
 function contar() {
      let c = 0
@@ -95,99 +66,87 @@ function contar() {
 }
 
 
-var control = {
-     "box":"caja",              // id de la caja de texto por defecto
-     "speed":50,                // velocidad de escritura por defecto
-     "history":"historyTest",       // historia por defecto
-     "action":undefined,
-     "state":"stop",          // Estado del Reproductor
-     "repro":false,             // si se está reproduciendo una historia
-     "noInterrupt":false,       // Valor para evitar ser interrumpido
-     "page":0,                  // Pagina actual
-     "paget":800,              // TIEMPO DE ESPERA
-     "voice":url["default_voice"],
-     "trackv":undefined,
-     "voiceDefault":false,
-     "voiceVolume":0.1,
-     "voiceActor":undefined,
-     // "music":{
-     //      "src":"",
-     //      "track":undefined,
-     //      "loop":undefined,
-     //      "play":function(l = false) {
-     //           // control.music.track.play();
-     //           this.track.play();
-     //           if(l){
-     //                this.loop = setInterval(() => {
-     //                     if(this.track.currentTime > this.track.duration)
-     //                     console.log("repetir");
-     //                     this.track.currentTime = 0;
-     //                }, this.track.duration*1000);
-     //           }else{
-     //                clearInterval(this.loop);
-     //           }
-     //      },
-     //      "changeVolumen":function(v){
-     //           this.track.volume = v/10;
-     //      }
-          
-     // }
-};   
 
-// function music(t){
-//      control["music"] = new Audio("/media/audio/"+t);
-//      control.music.play();
-// }
 
-var sound = {
-     "theme":{
-          "test":{
-               "src":url["music_test"],
-               "track":undefined
-          },
-          "fish":{
-               "src":url["music_fish"],
-               "track":undefined
-          }
-     },
-     "effect":{
-
+function musics(ti,co = "",lo = false,vo = 0.2){
+     /* 
+          t = TITLE      ->   String
+          b = COMMAND    ->   play|stop|pause|restart
+          l = LOOP       ->   true|false
+          v = VOLUMEN    ->   0-1
+     */
+     let t;
+     let c;
+     let l;
+     let v;
+     if(Array.isArray(ti)){
+          t = ti[0];
+          c = ti[1];
+          l = ti[2] || false;
+          v = ti[3] || 0.1;
+     }else{
+          t = ti;
+          c = co;
+          l = lo;
+          v = vo;
      }
+     
+     console.log(t);
+     console.log(c);
+     console.log(l);
+     console.log(v);
+     
+     if(sounds.music[t]["track"] === undefined){
+          sounds.music[t]["track"] = new Audio(sounds.music[t]["src"]);
+     }
+     
+     if(sounds.music[t]["track"] !== undefined){
+          if(c == "play"){
+               sounds.music[t]["track"].play();
+          }
+          if(c == "stop"){
+               sounds.music[t]["track"].pause();
+               sounds.music[t]["track"].currentTime = 0
+          }
+          if(c == "pause"){
+               sounds.music[t]["track"].pause();
+          }
+          if(c == "restart"){
+               sounds.music[t]["track"].currentTime = 0
+               sounds.music[t]["track"].play();
+          }
+     }
+     // LOOP
+     // console.log("LOOOOOP");
+     // console.log(l);
+     // console.log(sounds.music[t]["track"]);
+     if(l == "true" && sounds.music[t]["track"] !== undefined){
+          // console.log("SIIIIIIIIII");
+          sounds.loop[t] = setInterval(() => {
+               if((sounds.music[t]["track"].currentTime + 0.10) >= sounds.music[t]["track"].duration){
+                    sounds.music[t]["track"].currentTime = 0;
+                    sounds.music[t]["track"].play();
+               }
+          }, 10);
+     }
+     if(l == "false" && sounds.loop[t] !== undefined){
+          console.log("SIIIIIIIIIIN'T");
+          clearInterval(sounds.loop[t]);
+     }
+     
+
+     // VOLUMEN
+     sounds.music[t]["track"].volume = v;
+     
 }
-
-function theme(t){
-     // control["music"] = new Audio(sound["theme"][t].src);
-     sound["theme"][t].track.play();
-     control.music.play();
-}
-
-var talking = {};
-
-var pjs = {
-     "chinx":{
-          "sprite":url["chinx_sprite"],
-          "voice":url["chinx_voice"],
-          "track":undefined,
-          "size":55,
-          "box":"pj1",
-          "oRight":true
-     },
-     // "zoey":{
-     //      "sprite":"/media/pj/zoeytest/base.png",
-     //      "voice":"/media/pj/zoeytest/voice.wav",
-     //      "track":undefined,
-     //      "size":8,
-     //      "box":"pj2",
-     //      "oRight":false
-     // }
-};
 
 // Funciones BASICAS
 
 //   W R I T E 
 
 function write(word,place,speed,voice){
-     if(control.noInterrupt && talking[control.box] != undefined){
+     word = con(word);
+     if((control.noInterrupt == "true" ) && talking[control.box] != undefined){
           //true                   true
      }else{
           let s = speed || control.speed;
@@ -200,7 +159,7 @@ function write(word,place,speed,voice){
           //      console.log("pjs[control.voiceActor].voice : "+pjs[control.voiceActor].voice);
           //      let v = voice || (control.voiceActor == undefined) ? control.voice : pjs[control.voiceActor].voice;
           // } catch (error) {
-                let v = voice || control.voice;
+          let v = voice || control.voice;
           // }
           if(control.voiceActor !== undefined && !control.voiceDefault){
                v = pjs[control.voiceActor].voice;
@@ -214,11 +173,10 @@ function write(word,place,speed,voice){
                box.textContent = word;
                delete talking[l+"t"];
                delete talking[l];
-               if(control.repro){
-                    endWriteR();
+               ++control.page;
+               if(control.reproAuto == "true" || control.reproAuto === true){
+                    endWrite();
                }
-          //    ++control.page;
-               endWrite();
                return 0;
           }else{
                talking[l+"t"] = null;
@@ -245,17 +203,53 @@ function write(word,place,speed,voice){
                          delete talking[l+"t"];
                          delete talking[l];
                          //   control.noInterrupt = false;
-                         if(control.repro){
+                         ++control.page;
+                         if(control.reproAuto == "true" || control.reproAuto === true){
                               // next;
-                              endWriteR();
+                              endWrite();
                          }
-                         //   ++control.page;
-                         endWrite();
+                         
                     }
                     i++;
                }
           },s);
      }
+}
+
+// C O N
+
+function urlGet(value){
+     let p;
+     let lonk;
+     try {
+           lonk = document.URL.split("?");
+           p = lonk[1].split("=");
+     } catch (error) {
+          return "Internauta del Deep Web";
+     }
+     
+     console.log(p[0]);
+     console.log(value);
+     console.log(p[1]);
+     if(p[0] == value){
+          return cdf[p[1]];
+     }else{
+          return "Internauta del Deep Web";
+     }
+     
+}
+
+function con(word){
+     let w = "";
+     let wordArray = word.split("%");
+          wordArray.forEach(e => {
+               if( keys[e] !== undefined){
+                    w += keys[e];
+               }else{
+                    w += e;
+               }
+          });
+     return w;
 }
 
 // A C T O R 
@@ -375,10 +369,10 @@ function bs(p){
                          document.getElementById(pjs[ent][pro[0]]).style.backgroundImage = "none";
                     }
                     if(pro[0] == "oRight"){
-                         console.log("Valor a asignar a "+pro[0]+"es : "+pro[1]);
-                         console.log(pro[1] === "true");
+                         // console.log("Valor a asignar a "+pro[0]+"es : "+pro[1]);
+                         // console.log(pro[1] === "true");
                          pjs[ent][pro[0]] = pro[1] === "true";
-                         console.log(pjs[ent][pro[0]]);
+                         // console.log(pjs[ent][pro[0]]);
                     }else{
                          pjs[ent][pro[0]] = pro[1];
                     }
@@ -416,10 +410,6 @@ function stop(){
 }
 
 function endWrite(){
-     
-}
-
-function endWriteR(){
      if(control.state == "play"){
           setTimeout(() => {
                next();
@@ -430,27 +420,22 @@ function endWriteR(){
 function next(){
      try {
           if(window[control.history][control.page] !== undefined && control.state === "play"){  
-               
                if(window[control.history][control.page][2] !== undefined && window[control.history][control.page][2] !== ""){
                     bs(window[control.history][control.page][2]);
                }
                if(window[control.history][control.page][1] !== undefined){
                     actor(window[control.history][control.page][1]);
                }
-               
+
                write(window[control.history][control.page][0]);
-               // if(control.repro){
-                    control.page++;
-               // }else{
-                    control.repro = true;
-               // }
+               
           }else{
-               console.log("chacabo 1");
+               console.log("se acabo 1");
                stop();
           }
      } catch (error) {
           control.repro = false;
-          console.log("chacabo 2");
+          console.log("se acabo 2");
      }    
 }
 
@@ -463,33 +448,23 @@ function goToPage(a,b){
 }
 
 function start(){
-     // control.action = setInterval(() => {
-     //      if(control.state === "play"){
-     //           ++contador;
-     //           console.clear();
-     //           console.log(contador);
-     //           if(history[control.box]  === undefined){
-     //                setTimeout(() => {
-     //                     next();
-     //                }, control.paget);
-     //           }
-     //      }
-     // }, 100);
      next();
-     control.repro = true;
+     // control.repro = true;
 }
 
 function previous(){
     --control.page;
 }
 
-function sleep(a){
+function sleep(){
      console.log("A C T I V A D O");
      let protector = document.getElementById("protector");
      setTimeout(() => {
           protector.style.backgroundColor = "black";
-          protector.style.opacity = 0.85;
           protector.style.zIndex = 10;
+          protector.style.backgroundImage = "url("+url['win_bg']+")";
+          protector.style.backgroundSize = "100%";
+          musics("test","play",false,0.2);
           pause();
           favor();
      }, 270);
@@ -500,3 +475,70 @@ function favor(){
           write("Un momento","protector",100);
      }, 2500);
 }
+
+function screenHide(){
+     let clearScrean;
+     let i = 1;
+     clearScrean = setInterval(() => {
+             i -= 0.01;
+             document.getElementById("protector").style.opacity = i;
+             if(document.getElementById("protector").style.opacity <= 0){
+                 clearInterval(clearScrean);
+             }
+         }, 10);
+ }
+
+ let inis;
+ function dance(a){
+
+     var t = false;
+     inis = setInterval(() => {
+          bs(a[0]+":"+a[1]+"="+t);
+          actor("chinx/37");
+          t = !t;
+     }, 100);
+ }
+
+ function stopDance(a){
+     clearInterval(inis);
+ }
+
+ function condNext(){
+     control.reproAuto = false;
+     if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
+          next();
+     }
+ }
+
+
+ var btnUp, btnDown;
+
+ function btnDownAct(){
+     btnDown = new Date();
+ }
+
+ function btnUpAct(){
+     btnUp = new Date();
+     var time = btnUp - btnDown;
+
+     if(time > 500){
+          if(control.ReproAuto == true || control.ReproAuto == "true"){
+               control.reproAuto = false;
+               console.log("Modo Manual Activado");
+          }else{
+               console.log("Modo Automatico Activado");
+               control.reproAuto = true;
+               if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
+                    next();
+               }
+          }
+     }else{
+          control.reproAuto = false;
+          if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
+               if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
+                    next();
+                    console.log("Modo Automatico Desactivado");
+               }
+          }
+     }
+ }
