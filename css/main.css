@@ -226,6 +226,25 @@ body{
         padding: 5vw;
         font-size: 5vw;
     }
+
+    .final{
+        padding-top: 55vw;
+        font-size: 9vw;
+        color: white;
+        font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .co{
+        padding-bottom: 10vw;
+        color: white;
+        font-size: 5vw;
+    }
+    
+    .sec{
+        color: white;
+        padding-bottom: 9vw;
+        font-size:6vw;
+    }
 }
 
 @media only screen and (max-height: 100vw) {
@@ -255,6 +274,25 @@ body{
     #iniciarTesteo{
         padding: 5vh;
         font-size: 5vh;
+    }
+
+    .final{
+        padding-top: 55vh;
+        font-size: 9vh;
+        color: white;
+        font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .co{
+        padding-bottom: 10vh;
+        color: white;
+        font-size: 5vh;
+    }
+    
+    .sec{
+        color: white;
+        padding-bottom: 9vh;
+        font-size:6vh;
     }
 }
 

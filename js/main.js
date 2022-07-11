@@ -21,7 +21,7 @@ function lol(){
                          pol++;
                          document.getElementById("progre").style.width = (((pol)*100)/tot) + "%"; 
                          if(pol == tot){
-                              console.log("si");
+                              // console.log("si");
                               setActor(["chinx",56,"pj1"]);
                               document.getElementById("progre").innerText = "Completado :³";
                               document.getElementById("starting").innerHTML = "<button id='iniciarTesteo'>INICIAR</button>";
@@ -91,10 +91,10 @@ function musics(ti,co = "",lo = false,vo = 0.2){
           v = vo;
      }
      
-     console.log(t);
-     console.log(c);
-     console.log(l);
-     console.log(v);
+     // console.log(t);
+     // console.log(c);
+     // console.log(l);
+     // console.log(v);
      
      if(sounds.music[t]["track"] === undefined){
           sounds.music[t]["track"] = new Audio(sounds.music[t]["src"]);
@@ -130,7 +130,7 @@ function musics(ti,co = "",lo = false,vo = 0.2){
           }, 10);
      }
      if(l == "false" && sounds.loop[t] !== undefined){
-          console.log("SIIIIIIIIIIN'T");
+          // console.log("SIIIIIIIIIIN'T");
           clearInterval(sounds.loop[t]);
      }
      
@@ -228,9 +228,9 @@ function urlGet(value){
           return "Internauta del Deep Web";
      }
      
-     console.log(p[0]);
-     console.log(value);
-     console.log(p[1]);
+     // console.log(p[0]);
+     // console.log(value);
+     // console.log(p[1]);
      if(p[0] == value){
           return cdf[p[1]];
      }else{
@@ -287,7 +287,7 @@ function fntn(a,b){
      try {
           window[a](p);
      } catch (error) {
-          console.log("Error:"+error);
+          // console.log("Error:"+error);
      }
      
 }
@@ -430,12 +430,12 @@ function next(){
                write(window[control.history][control.page][0]);
                
           }else{
-               console.log("se acabo 1");
+               // console.log("se acabo 1");
                stop();
           }
      } catch (error) {
           control.repro = false;
-          console.log("se acabo 2");
+          // console.log("se acabo 2");
      }    
 }
 
@@ -457,17 +457,35 @@ function previous(){
 }
 
 function sleep(){
-     console.log("A C T I V A D O");
+     // console.log("A C T I V A D O");
      let protector = document.getElementById("protector");
      setTimeout(() => {
           protector.style.backgroundColor = "black";
           protector.style.zIndex = 10;
           protector.style.backgroundImage = "url("+url['win_bg']+")";
           protector.style.backgroundSize = "100%";
+          protector.innerHTML = "<div id='final' class='final'>Muchas gracias</div>";
+          setTimeout(() => {
+               protector.innerHTML += "<div id='co' class='co'>Este dispositivo se autodestruirá en </div><div id='sec' class='sec'></div>";
+               autodestrucc();
+          }, 2000);
           musics("test","play",false,0.2);
-          pause();
-          favor();
+          // pause();
+          // favor();
      }, 270);
+}
+
+function autodestrucc(){
+     let fel;
+     let i = 5;
+     fel = setInterval(() => {
+          document.getElementById("sec").innerText = "00:0"+i;
+          --i;
+          if(i <= 0){
+               document.getElementById("sec").innerText = "Es broma :³";
+               clearInterval(fel);
+          }
+     }, 1000);
 }
 
 function favor(){
@@ -524,9 +542,9 @@ function screenHide(){
      if(time > 500){
           if(control.ReproAuto == true || control.ReproAuto == "true"){
                control.reproAuto = false;
-               console.log("Modo Manual Activado");
+               // console.log("Modo Manual Activado");
           }else{
-               console.log("Modo Automatico Activado");
+               // console.log("Modo Automatico Activado");
                control.reproAuto = true;
                if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
                     next();
@@ -537,7 +555,7 @@ function screenHide(){
           if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
                if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
                     next();
-                    console.log("Modo Automatico Desactivado");
+                    // console.log("Modo Automatico Desactivado");
                }
           }
      }
