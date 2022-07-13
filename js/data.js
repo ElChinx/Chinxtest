@@ -133,12 +133,12 @@ let cdf = {
      "ShinxPoweaOfTheCukWorld":"Joven Shinx Patita Poderosa",
      "JaviElShinxMenorTodoUnProfesional":"Hermanito Shinx",
      // Im not Sure because No les hablo pero si se que son buenas personas
-     "":"Joven Sirenito",
-     "":"Joven Antonimouz",
-     "":"Joven Dino",
-     "":"Joven Absolito",
-     "":"",
-
+     "PopplioElSirenitoMilanesaCondenadoAUnFrascoDeBits":"Joven Sirenito",
+     "SuperSerpientitaEcologica64":"Joven Antonimouz",
+     "SebasEsUnDinosaurioQueViveEnLaMatrix":"Joven Dino",
+     "DoggadictoAlDogChauYALosWesos":"Joven Absolito",
+     "tripaloskiTodoMio":"Joven Pinshinx Comunista",
+     "ComoQueLilyNoSeApellidaOwO":"Joven Lily",
 }
 
 var keys = {

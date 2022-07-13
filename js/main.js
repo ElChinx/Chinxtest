@@ -26,7 +26,7 @@ function lol(){
                               document.getElementById("progre").innerText = "Completado :³";
                               document.getElementById("starting").innerHTML = "<button id='iniciarTesteo'>INICIAR</button>";
                               document.getElementById("iniciarTesteo").addEventListener("click",btnStart); 
-                              document.getElementById("noti").innerHTML = "v. 1.0.1 alfa";
+                              document.getElementById("noti").innerHTML = "v. 1.0.2 alfa";
                          }
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -324,24 +324,24 @@ function bg(array){
 
 // FPS
 
-let fps = document.getElementById('fps_data');
-let fps_control = document.getElementById('fps_control');
+// let fps = document.getElementById('fps_data');
+// let fps_control = document.getElementById('fps_control');
 
-setInterval(() => {
-     fps.innerHTML = "";
-     Object.entries(control).forEach(e => {
-          const [k,v] = e;
-          fps.innerHTML += k + " : "+ v +"<br>";
-     });
-     fps.innerHTML += "--------------<br>";
-     fps_control.innerHTML = "<span id='ctrl'>"+control.state+"</span>";
-     Object.entries(talking).forEach(e => {
-          const [k,v] = e;
-          fps.innerHTML += k + " : "+ v +"<br>";
-     });
-}, 500);
+// setInterval(() => {
+//      fps.innerHTML = "";
+//      Object.entries(control).forEach(e => {
+//           const [k,v] = e;
+//           fps.innerHTML += k + " : "+ v +"<br>";
+//      });
+//      fps.innerHTML += "--------------<br>";
+//      fps_control.innerHTML = "<span id='ctrl'>"+control.state+"</span>";
+//      Object.entries(talking).forEach(e => {
+//           const [k,v] = e;
+//           fps.innerHTML += k + " : "+ v +"<br>";
+//      });
+// }, 500);
 
-document.getElementById('fps_control').addEventListener("click",play);
+// document.getElementById('fps_control').addEventListener("click",play);
 
 // FIN DE FPS
 
