@@ -3,9 +3,9 @@ let urlHome = "https://elchinx.github.io/Chinxtest";
 var url = {          
           // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
           "bg_bg": urlHome+"/media/box.jpg",
-          "chinx_voice": urlHome+"/media/pj/chinx/voice.wav",
+          "chinx_voice": urlHome+"/media/pj/chinx/voiceV.wav",
           "chinx_sprite":urlHome+"/media/pj/chinx/base.png",
-          "sans_voice": urlHome+"/media/pj/chinx/sans.wav",
+          "sans_voice": urlHome+"/media/pj/chinx/sansV.wav",
           "win_bg":urlHome+"/media/win.png",
           "audio_fish": urlHome+"/media/audio/fish.mp3",
           "audio_flo":urlHome+"/media/audio/flo.mp3",
