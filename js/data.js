@@ -279,7 +279,7 @@ var historyTest =
      ["Ahora aquí estoy","chinx/34","control:reproAuto=true,repro=true"],
      ["y ahora aquí ","chinx/34","chinx:oRight=false,box=pj2"],
      ["Ahora volveré a mi lugar de inicio","chinx/34",""],
-     ["Ya","chinx/34","chinx:oRight=true,box=pj1"],
+     ["Listo","chinx/34","chinx:oRight=true,box=pj1"],
      ["Ahora la dirección a la que estoy mirando","chinx/12","chinx:oRight=true"],
      ["Aquí es donde hubo muchos problemas pero el resultado valió la pena","chinx/17",""],
      ["Miro a la izquierda","chinx/35","chinx:oRight=false"],
@@ -332,6 +332,6 @@ var historyTest =
      ["muchas gracias por su ayuda","chinx/52",""],
      ["su opinión y datos de lo que sucediò durante su tiempo aquí es necesaria","chinx/53",""],
      ["nos vemos en la versión final","chinx/54","control:reproAuto=true,repro=true"],
-     ["si es que logra salir","chinx/55","control:reproAuto=true,repro=true"],
+     ["si es que logra salir por completo","chinx/55","control:reproAuto=true,repro=true"],
      ["","chinx/0","function:sleep=gracias"]
 ];

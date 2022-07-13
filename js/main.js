@@ -492,7 +492,7 @@ function sleep(){
           protector.style.backgroundSize = "100%";
           setTimeout(() => {
                protector.innerHTML = "<div id='final' class='final'>Muchas gracias</div>";
-               protector.innerHTML += "<div id='co' class='co'>Este dispositivo se autodestruirá en </div><div id='sec' class='sec'>00:05</div>";
+               protector.innerHTML += "<div id='co' class='co'>Este dispositivo se autodestruirá en </div><div id='sec' class='sec'>00:09</div>";
                autodestrucc();
           }, 2000);
           musics("test","play",false,0.2);
@@ -503,11 +503,11 @@ function sleep(){
 
 function autodestrucc(){
      let fel;
-     let i = 5;
+     let i = 8;
      fel = setInterval(() => {
           document.getElementById("sec").innerText = "00:0"+i;
           --i;
-          if(i <= 0){
+          if(i == -1){
                document.getElementById("sec").innerText = "Es broma :³";
                clearInterval(fel);
           }
