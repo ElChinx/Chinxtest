@@ -1,7 +1,8 @@
-let urlHome = "https://elchinx.github.io/Chinxtest/";
+let urlHome = "https://elchinx.github.io/Chinxtest";
 
 var url = {          
           // "sprite":"https://webchinx.000webhostapp.com/media/pj/chinxtest/base.png",
+          "bg_bg": urlHome+"/media/box.jpg",
           "chinx_voice": urlHome+"/media/pj/chinx/voice.wav",
           "chinx_sprite":urlHome+"/media/pj/chinx/base.png",
           "sans_voice": urlHome+"/media/pj/chinx/sans.wav",
@@ -119,13 +120,24 @@ var pjs = {
 
 let cdf = {
      "abc":"Lucas",                                                                            //
-     "siNoSeDejaAlañarLeCaeUnVirusQueLeJakeaBienCabron":"Joel",                                //
+     "siNoSeDejaAlanharLeCaeUnVirusQueLeJakeaBienCabron":"Joel",                                //
      "moishinx":"Moises",                                                                      //
      "DoggadictoALosWesos":"Joven Riolu",
      "ZorritoQueSeAmaneceCada2DiasDiarios":"Joven Zorrito",
      "JovenCubitoRockeroHeavyMetal":"Joven Cubito",
      "ShinxGrandoteQuePareceLuxio":"Joven Shinx",
-     "FranShinxCOAsociados":"Francis"
+     "FranShinxCOAsociados":"Francis",
+     // segunda test
+     "Flamvliom":"Joven Flavio",
+     "JOanJOtaro":"Joven Estrellita",
+     "ShinxPoweaOfTheCukWorld":"Joven Shinx Patita Poderosa",
+     "JaviElShinxMenorTodoUnProfesional":"Hermanito Shinx",
+     // Im not Sure because No les hablo pero si se que son buenas personas
+     "":"Joven Sirenito",
+     "":"Joven Antonimouz",
+     "":"Joven Dino",
+     "":"Joven Absolito",
+     "":"",
 
 }
 
@@ -134,7 +146,7 @@ var keys = {
 
 };
 
-var test = 
+var test =
 [
      ['HOLA','chinx/1','chinx:oRight=true,box=pj1;function:setActor=zoey+1'],
      ['¿COMO ESTAN?','chinx/2','chinx:oRight=false,box=pj2;control:speed=25,paget=1000'],
@@ -148,11 +160,19 @@ var test =
 var historyTest = 
 [
      ["Hola %name%","chinx/1","function:musics=flo+play+true+0.4"],
-     ["Si estas mirando esto, significa que eres una persona muy importante","chinx/2",""],
-     ["Y tambien significa que tienes buenos gustos","chinx/4",""],
+     ["Si estas mirando esto por primera vez, significa que eres una persona muy importante","chinx/2",""],
+     ["Si lo estas mirando por segunda vez, significa que gracias a tí tu opinion ayudo a mejorar","chinx/3"],
+     ["Y tambien significa que sigues teniendo buenos gustos","chinx/4",""],
      // 
-     ["Si los dialogos son muy rapidos, solo toca la pantalla para que puedas saltear el dialogo tu mismo","chinx/2",""],
-     ["o manten presionado un momento la pantalla para cambiarlo a automatico","chinx/3",""],
+     ["Si los dialogos son muy lentos, solo toca la pantalla para que puedas saltear el dialogo tu mismo","chinx/2",""],
+     ["puedes presionar el boton de arriba para controlar los dialogos","chinx/16",""],
+     ["Si esta encendido, seran automaticos","chinx/3",""],
+     ["Si esta apagado, se pausaran y podras continuar haciendo click en cualquier parte del escenario","chinx/4",""],
+     ["o simplemente tocando la pantalla","chinx/3",""],
+     ["Si se enciende solo es para no interrumpir una parte importante rapida","chinx/2",""],
+     ["Pero no te preocupes, se detendra solo cuando acabe ese momento","chinx/3",""],
+     ["Incluso si lo pusiste en automatico","chinx/2",""],
+     ["Bueno, continuemos","chinx/4",""],
      // 
      ["Tal vez te preguntes ¿Que es toda esta wea?","chinx/3",""],
      ["Pues basicamente es una especie de Alfa,Beta o algo así","chinx/2",""],
@@ -160,6 +180,10 @@ var historyTest =
      ["Aunque ya vamos a llegar a los 1100","chinx/2",""],
      ["pero no pude hacerlo por varios motivos","chinx/2",""],
      ["Principalmente por no tener a quien pueda acompañarme","chinx/3",""],
+     ["Un momento","chinx/2",""],
+     ["","chinx/8",""],
+     ["Ya somos más de 1100","chinx/11",""],
+     ["Entonces demonos prisa","chinx/28",""],
      ["Talvez pienses que esto es una clase de videojuego","chinx/2",""],
      ["Se que tiene pantalla de carga y dialogo a lo RPG","chinx/3",""],
      ["Pero era eso a hablar con la voz del creador","chinx/4",""],
@@ -168,7 +192,14 @@ var historyTest =
      ["Estaba haciendo otra cosas y esto me tomaba algo de tiempo pero me sirve","chinx/3",""],
      ["Me estarias haciendo un favor si crees que no es buena idea, solo si","chinx/4",""],
      ["Despues de esto ya podre volver a hacer garabatos","chinx/4",""],
-     ["Vamos a probar algunas funciones y ver si todo sale bien","chinx/3",""],
+     ["Vamos a volver a probar algunas funciones y ver si todo sale bien","chinx/3",""],
+     ["Esta es una version revisada por unos amigos que me dieron su opinion","chinx/2",""],
+     ["Antes no habia el boton de arriba, era mantener el click presionado unos segundos","chinx/4",""],
+     ["hasta que me di cuenta que en los Telefonos no se puede","chinx/2",""],
+     ["Pero despues de todo funcionó y les gustó","chinx/3",""],
+     ["Que bueno que les gustara","chinx/3",""],
+     ["Ahora quiero saber si tambien opinas lo mismo o crees que no es una buena idea","chinx/4",""],
+     ["Una buena idea para un directo o una buena idea para otra cosa","chinx/3",""],
      ["Si tienes algun problema, se ve mál, desincronizado. Porfavor, avisame y explicame en que momento pasó","chinx/3",""],
      ["¿Entendido?","chinx/4","control:paget=1500"],
      ["Bien","chinx/3","control:paget=1000"],
@@ -211,7 +242,7 @@ var historyTest =
      ["y esta","chinx/16","control:repro=true,reproAuto=true,paget=100"],
      ["y por ultima","chinx/17","control:paget=1000,reproAuto=true,repro=true"],
      ["este","chinx/18","control:paget=500,reproAuto=true,repro=true"],
-     ["Ahora vamos a cambiar de fondo","chinx/12",""],
+     ["Ahora vamos a cambiar de fondo","chinx/12","control:paget=950,reproAuto=false,repro=false"],
      ["Como solo es prueba, vamos a cambiar los fondos de prueba","chinx/5",""],
      ["muestren el fondo 2","chinx/19","control:reproAuto=true,repro=true"],
      ["","chinx/20",""],
@@ -228,9 +259,9 @@ var historyTest =
      ["","chinx/22","control:reproAuto=true,repro=true"],
      ["REGRESA! REGRESA!","chinx/23","control:paget=1000,speed=50"],
      ["","chinx/24","control:paget=700,"],
-     ["","chinx/24","control:paget=800,speed=50;function:bg=0,musics=hard+stop"],
+     ["","chinx/24","control:paget=950,speed=50;function:bg=4,musics=hard+stop"],
      ["Creo que es suficiente","chinx/25",""],
-     ["¿que más sigue?","chinx/26",""],
+     ["¿que más sigue?","chinx/26","control:paget=950,reproAuto=false,repro=false"],
      ["ah! Ya recordé","chinx/12",""],
      ["aparecer y desaparecer","chinx/5","control:reproAuto=true,repro=true"],
      ["mira, magia","chinx/13","control:reproAuto=true,repro=true"],
@@ -239,7 +270,7 @@ var historyTest =
      ["BOOOOOAAAAAA!","chinx/29","function:musics=grito+play+false+0.2"],
      ["Soy tu vida adulta con MUCHAS Responsabilidades y Estres","chinx/30","function:musics=grito+stop"],
      ["Perdona, no resistí hacerlo","chinx/31",""],
-     ["Continuemos","chinx/12",""],
+     ["Continuemos","chinx/12","control:paget=950,reproAuto=false,repro=false"],
      ["Ahora es momento de ver los lados","chinx/5",""],
      ["Ahora estoy en el lado IZQUIERDO de tu pantalla","chinx/32",""],
      ["Debo probar si podré estar en el lado DERECHO","chinx/33",""],
@@ -248,37 +279,37 @@ var historyTest =
      ["Ahora volveré a mi lugar de inicio","chinx/34",""],
      ["Ya","chinx/34","chinx:oRight=true,box=pj1"],
      ["Ahora la dirección a la que estoy mirando","chinx/12","chinx:oRight=true"],
+     ["Aquí es donde hubo muchos problemas pero el resultado valió la pena","chinx/17",""],
      ["Miro a la izquierda","chinx/35","chinx:oRight=false"],
      ["Luego a la derecha","chinx/35","chinx:oRight=true"],
      ["Izquierda","chinx/36","chinx:oRight=false"],
      ["Derecha","chinx/36","chinx:oRight=true"],
-     ["Izquierda","chinx/36","chinx:oRight=false"],
-     ["","chinx/36","chinx:oRight=true;function:musics=fish+play+true+0.6;control:btnNextAvailable=false,reproAuto=true,paget=700"],
-     ["","chinx/36","chinx:oRight=false"],
-     ["","chinx/36","chinx:oRight=true"],
+     ["Izquierda","chinx/36","chinx:oRight=false;control:btnNextAvailable=false,reproAuto=true,repro=true,paget=700"],
+     ["","chinx/36","chinx:oRight=true;function:musics=fish+play+false+0.6;control:btnNextAvailable=false,repro=true,paget=700"],
+     ["","chinx/36","chinx:oRight=false;control:btnNextAvailable=false,repro=true,paget=700"],
+     ["","chinx/36","chinx:oRight=true;control:btnNextAvailable=false,repro=true,paget=700"],
      // BAILE BIEN PERRON
-     ["","chinx/37","control:paget=7000;function:dance=chinx+oRight+false"],
+     ["","chinx/37","control:btnNextAvailable=false,repro=true,paget=7000;function:dance=chinx+oRight+false"],
      //  FIN DEL BAILE BIEN PERRON
-     ["Ahora la siguiente prueba","chinx/5","chinx:oRight=true;control:btnNextAvailable=true,reproAuto=true,paget=800;function:musics=fish+stop,stopDance=a"],
-     ["La de voz","chinx/12","control:"],
+     ["Ahora la siguiente prueba","chinx/5","chinx:oRight=true;control:btnNextAvailable=true,reproAuto=false,paget=950;function:musics=fish+stop,stopDance=a"],
+     ["La de voz","chinx/12",""],
      ["realmente es un audio recortado de un grito","chinx/17",""],
      ["para que suene con cada letra que se escribe","chinx/14",""],
-     ["Escucha","chinx/12",""],
+     ["Escucha","chinx/12","control:paget=950,reproAuto=true,repro=true"],
      ["","chinx/38",""],
-     ["Quieres pasar un mal rato?","chinx/39","control:voice=/media/pj/chinx/sans.wav;function:musics=megalovania+play+false+0.2"],
+     ["¿Quieres pasar un mal rato?","chinx/39","control:speed=70,paget=500,reproAuto=true,repro=true,voice=/media/pj/chinx/sans.wav;function:musics=megalovania+play+false+0.2"],
      ["mhhj!","chinx/40","control:voice=/media/audio/voice.wav;function:musics=megalovania+stop+false+0.3"],
-     ["Que al raton nos vemos","chinx/16","control:voice=/media/pj/chinx/voice.wav"],
-
+     ["¿Vistes pasar aquel raton?","chinx/16","control:voice=/media/pj/chinx/voice.wav"],
      // LA RAZÓN DE NO TENER VOZ
-     ["Podria pedirle a amigos que me presten su voz","chinx/2","chinx:voice=/Chinxtest/media/audio/voice.wav"],
+     ["Podria pedirle a amigos que me presten su voz","chinx/2","chinx:voice=/Chinxtest/media/audio/voice.wav;control:speed=60,paget=950,reproAuto=false,repro=false"],
      ["De hecho, se quien puede prestarme su voz","chinx/3",""],
      ["Pero Zoey no tendria voz y no podria usar Loquendo","chinx/2",""],
-     ["Imagina esto","chinx/2",""],
+     ["Imagina esto","chinx/2","control:paget=950,reproAuto=true,repro=true"],
      ["Hola amigos de Youtube, el día de hoy vamos a descargar winrar full version con su keygen serial y crack","chinx/2","control:voiceVolume=0;function:musics=loquendo1+play+false+0.2"],
      ["Primero vamos al link que les dejare en la descripción","chinx/2","control:voiceVolume=0;function:musics=loquendo2+play+false+0.2,musics=loquendo1+stop"],
      ["Yo no lo descargo porque ya lo tengo","chinx/2","control:voiceVolume=0;function:musics=loquendo3+play+false+0.2,musics=loquendo2+stop"],
      ["aaaaaaaaaaaaa xdxdxddd","chinx/2","control:voiceVolume=0,paget=2500;function:musics=loquendo4+play+false+0.2,musics=loquendo3+stop"],
-     ["Debe ser el último","chinx/5","control:voiceVolume=0.1,paget=850;function:musics=loquendo4+stop"],
+     ["Debe ser el último","chinx/5","control:voiceVolume=0.1,paget=1000,reproAuto=false,repro=false;function:musics=loquendo4+stop"],
      ["ahhh!! Casi lo olvido!","chinx/41",""],
      ["la transparencia tambien","chinx/5",""],
      ["No me debes ver con un fondo blanco siempre","chinx/13","control:reproAuto=true,repro=true"],
@@ -286,13 +317,14 @@ var historyTest =
      ["","chinx/42","control:reproAuto=true,repro=true,paget=550"],
      ["","chinx/43","control:reproAuto=true,repro=true"],
      ["!","chinx/44","control:reproAuto=true,repro=true"],
-     ["Pero solo lo de afuera","chinx/45","control:reproAuto=true,repro=true,paget=850"],
+     ["Pero solo lo de afuera","chinx/45","control:reproAuto=true,repro=true,paget=1000"],
      ["","chinx/46","control:reproAuto=true,repro=true,paget=550"],
      ["","chinx/47","control:reproAuto=true,repro=true"],
-     ["Shinx-niestro","chinx/48","control:paget=850"],
+     ["Shinx-niestro","chinx/48","control:paget=1000"],
      ["deberia agregar más cosa como que salga un cuadro de texto para elegir","chinx/49",""],
      ["tambien hacer que tu debas interactuar para seguir con el diálogo","chinx/50",""],
-     ["por ahora todo bien","chinx/49",""],
+     ["Y el color y la ortografía cuando se pase todo a produSHIoNX","chinx/49",""],
+     ["pero por ahora todo bien","chinx/49",""],
      ["deberia ser en algún otro lugar que no sea una web","chinx/48",""],
      ["Eso es todo y para terminar","chinx/51",""],
      ["muchas gracias por su ayuda","chinx/52",""],

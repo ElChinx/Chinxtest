@@ -26,10 +26,11 @@ function lol(){
                               document.getElementById("progre").innerText = "Completado :³";
                               document.getElementById("starting").innerHTML = "<button id='iniciarTesteo'>INICIAR</button>";
                               document.getElementById("iniciarTesteo").addEventListener("click",btnStart); 
+                              document.getElementById("noti").innerHTML = "v. 1.0.1 alfa";
                          }
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
-                         alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                         document.getElementById("noti").innerHTML = "Error al cargar los archivos multimedia, vuelva a ingresar la página o destruya el Internet"
                     }
                });
           });
@@ -48,9 +49,13 @@ function btnStart(){
           document.getElementById("protector").innerHTML = "";
           document.getElementById("protector").style.opacity = 1;
           document.getElementById("protector").style.backgroundColor = "rgba(0, 0, 0, 0)";
-          // document.getElementById(control.btnNext).addEventListener("click",condNext);
-          document.getElementById(control.btnNext).onmousedown = btnDownAct;
-          document.getElementById(control.btnNext).onmouseup = btnUpAct;
+          
+          document.getElementById("screen").innerHTML += '<div id="controlAuto" class="control">ON</div>';
+          document.getElementById("controlAuto").addEventListener("click",controlAuto);
+          document.getElementById(control.btnNext).addEventListener("click",condNext);
+          // document.getElementById("protector").innerHTML = '<div id="control" class="control">auto</div>';
+          // document.getElementById(control.btnNext).onmousedown = btnDownAct;
+          // document.getElementById(control.btnNext).onmouseup = btnUpAct;
           play();
      }, 1500);
 }
@@ -170,6 +175,7 @@ function write(word,place,speed,voice){
           if(talking[l] !== undefined){
                // Interrupted
                clearInterval(talking[l+"t"]);
+               control.repro = false;
                box.textContent = word;
                delete talking[l+"t"];
                delete talking[l];
@@ -187,6 +193,7 @@ function write(word,place,speed,voice){
           let txt = '';
           let words = word.split('');
           talking[l+"t"] = setInterval(() => {
+               control.repro = true;
                if(control.state == "play"){
                     if(box.textContent == txt && words[i] !== undefined && talking[l] == true ){
                          // Writing
@@ -200,6 +207,7 @@ function write(word,place,speed,voice){
                          // Finished writing
                          talking[l] = false;
                          clearInterval(talking[l+"t"]);
+                         control.repro = false;
                          delete talking[l+"t"];
                          delete talking[l];
                          //   control.noInterrupt = false;
@@ -316,24 +324,24 @@ function bg(array){
 
 // FPS
 
-// let fps = document.getElementById('fps_data');
-// let fps_control = document.getElementById('fps_control');
+let fps = document.getElementById('fps_data');
+let fps_control = document.getElementById('fps_control');
 
-// setInterval(() => {
-//      fps.innerHTML = "";
-//      Object.entries(control).forEach(e => {
-//           const [k,v] = e;
-//           fps.innerHTML += k + " : "+ v +"<br>";
-//      });
-//      fps.innerHTML += "--------------<br>";
-//      fps_control.innerHTML = "<span id='ctrl'>"+control.state+"</span>";
-//      Object.entries(talking).forEach(e => {
-//           const [k,v] = e;
-//           fps.innerHTML += k + " : "+ v +"<br>";
-//      });
-// }, 500);
+setInterval(() => {
+     fps.innerHTML = "";
+     Object.entries(control).forEach(e => {
+          const [k,v] = e;
+          fps.innerHTML += k + " : "+ v +"<br>";
+     });
+     fps.innerHTML += "--------------<br>";
+     fps_control.innerHTML = "<span id='ctrl'>"+control.state+"</span>";
+     Object.entries(talking).forEach(e => {
+          const [k,v] = e;
+          fps.innerHTML += k + " : "+ v +"<br>";
+     });
+}, 500);
 
-// document.getElementById('fps_control').addEventListener("click",play);
+document.getElementById('fps_control').addEventListener("click",play);
 
 // FIN DE FPS
 
@@ -361,7 +369,17 @@ function bs(p){
                     fntn(pro[0],pro[1]);
                }else if(ent == "control"){
                     // console.log("antes: "+ control[pro[0]]);
-                    control[pro[0]] = pro[1];
+                    if(pro[1] == "false" || pro[1] == "true"){
+                         if(pro[1] == "true"){
+                              control[pro[0]] = true;
+                         }else{
+                              control[pro[0]] = false;
+                         }
+                         
+                    }else{
+                         control[pro[0]] = pro[1];
+                    }
+                    
                     // console.log("Nuevo valor: "+ control[pro[0]]);
                }else{
                     // console.log("Valor antiguo: "+pjs[ent][pro[0]]);
@@ -433,10 +451,16 @@ function next(){
                // console.log("se acabo 1");
                stop();
           }
+          if(control.reproAuto){
+               controlON();
+          }else{
+               controlOFF();
+          }
      } catch (error) {
           control.repro = false;
           // console.log("se acabo 2");
      }    
+     
 }
 
 function goToPage(a,b){
@@ -458,6 +482,7 @@ function previous(){
 
 function sleep(){
      // console.log("A C T I V A D O");
+     document.getElementById("controlAuto").style.display = "none";
      let protector = document.getElementById("protector");
      setTimeout(() => {
           protector.style.backgroundColor = "black";
@@ -508,7 +533,6 @@ function screenHide(){
 
  let inis;
  function dance(a){
-
      var t = false;
      inis = setInterval(() => {
           bs(a[0]+":"+a[1]+"="+t);
@@ -522,40 +546,72 @@ function screenHide(){
  }
 
  function condNext(){
-     if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
-          next();
-     }
- }
-
-
- var btnUp, btnDown;
-
- function btnDownAct(){
-     btnDown = new Date();
- }
-
- function btnUpAct(){
-     btnUp = new Date();
-     var time = btnUp - btnDown;
-
-     if(time > 500){
-          if(control.ReproAuto == true || control.ReproAuto == "true"){
-               control.reproAuto = false;
-               // console.log("Modo Manual Activado");
-          }else{
-               // console.log("Modo Automatico Activado");
-               control.reproAuto = true;
-               if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
-                    next();
-               }
-          }
-     }else{
+     if( control.btnNextAvailable ){
+          // console.log("ta bien");
           control.reproAuto = false;
-          if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
-               if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
-                    next();
-                    // console.log("Modo Automatico Desactivado");
-               }
+          next();
+     }else{
+          // console.log("que raro");
+     }
+ }
+
+ var controlValue;
+
+ function controlAuto(){
+     if(control.reproAuto == true || control.reproAuto == "true"){
+          document.getElementById("controlAuto").style.backgroundColor = "orange";
+          document.getElementById("controlAuto").innerText = "OFF";
+          control.reproAuto = false;
+     }else{
+          document.getElementById("controlAuto").style.backgroundColor = "greenyellow";
+          document.getElementById("controlAuto").innerText = "ON";
+          control.reproAuto = true;
+          if(control.repro != true){
+               next();
           }
      }
  }
+
+ function controlON(){
+     document.getElementById("controlAuto").style.backgroundColor = "greenyellow";
+     document.getElementById("controlAuto").innerText = "ON";
+ }
+
+ function controlOFF(){
+     document.getElementById("controlAuto").style.backgroundColor = "orange";
+     document.getElementById("controlAuto").innerText = "OFF";
+ }
+//  var btnUp, btnDown;
+
+//  function btnDownAct(){
+//      btnDown = new Date();
+//  }
+
+//  function btnUpAct(){
+//      btnUp = new Date();
+//      var time = btnUp - btnDown;
+
+//      if(control.btnNextAvailable === true){
+//           if(time > 500){
+//                if(control.ReproAuto == true || control.ReproAuto == "true"){
+//                     control.reproAuto = false;
+//                     // console.log("Modo Manual Activado");
+//                }else{
+//                     // console.log("Modo Automatico Activado");
+//                     control.reproAuto = true;
+//                     if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
+//                          next();
+//                     }
+//                }
+//           }else{
+//                control.reproAuto = false;
+//                if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
+//                     if( control.btnNextAvailable == true|| control.btnNextAvailable == "true"){
+//                          next();
+//                          // console.log("Modo Automatico Desactivado");
+//                     }
+//                }
+//           }
+//      }
+
+//  }

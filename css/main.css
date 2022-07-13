@@ -181,6 +181,8 @@ body{
 
 .noti{
     background-color: none;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
 }
 
 .starting{
@@ -197,7 +199,20 @@ body{
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius: 7%;
 }
+
+.control{
+    position:absolute;
+    color: black;
+    border-radius: 100%;
+    background-color: greenyellow;
+    text-align: center;
+    /* display: none; */
+    z-index: 8;
+    opacity: 0.5;
+}
+
 
 @media only screen and (max-width: 100vh) {
     /* Height Superior */
@@ -237,13 +252,28 @@ body{
     .co{
         padding-bottom: 10vw;
         color: white;
-        font-size: 5vw;
+        font-size: 4vw;
+        font-family: 'Courier New', Courier, monospace;
     }
     
     .sec{
         color: white;
         padding-bottom: 9vw;
+        font-family: 'Courier New', Courier, monospace;
         font-size:6vw;
+    }
+
+    .noti{
+        font-size: 4vw;
+    }
+
+    .control{
+        width: 8vw;
+        height: 8vw;
+        left: 2%;
+        top: 48%;
+        font-size: 3vw;
+        padding-top: 1.7vw;
     }
 }
 
@@ -286,13 +316,28 @@ body{
     .co{
         padding-bottom: 10vh;
         color: white;
-        font-size: 5vh;
+        font-size: 4vh;
+        font-family: 'Courier New', Courier, monospace;
     }
     
     .sec{
         color: white;
         padding-bottom: 9vh;
         font-size:6vh;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .noti{
+        font-size: 4vh;
+    }
+
+    .control{
+        width: 8vh;
+        height: 8vh;
+        left: 48%;
+        top: 2%;
+        font-size: 3vh;
+        padding-top: 1.7vh;
     }
 }
 
