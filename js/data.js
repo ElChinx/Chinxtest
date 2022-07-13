@@ -143,7 +143,9 @@ let cdf = {
 
 var keys = {
      "name":urlGet("a"),
-
+     "sans":url["sans_voice"],
+     "chinx":url["chinx_voice"],
+     "default":url["default_voice"]
 };
 
 var test =
@@ -297,11 +299,11 @@ var historyTest =
      ["para que suene con cada letra que se escribe","chinx/14",""],
      ["Escucha","chinx/12","control:paget=950,reproAuto=true,repro=true"],
      ["","chinx/38",""],
-     ["¿Quieres pasar un mal rato?","chinx/39","control:speed=70,paget=500,reproAuto=true,repro=true,voice="+url["sans_voice"]+";function:musics=megalovania+play+false+0.2"],
-     ["mhhj!","chinx/40","control:voice="+url["default_voice"]+";function:musics=megalovania+stop+false+0.3"],
-     ["¿Vistes pasar aquel raton?","chinx/16","control:voice="+url["chinx_voice"]],
+     ["¿Quieres pasar un mal rato?","chinx/39","control:speed=70,paget=500,reproAuto=true,repro=true,voiceVolume=0.3,voice=%sans%;function:musics=megalovania+play+false+0.1"],
+     ["mhhj!","chinx/40","control:voice=%default%;function:musics=megalovania+stop+false+0.3"],
+     ["¿Vistes pasar aquel raton?","chinx/16","control:voice=%chinx%,voiceVolume=0.05"],
      // LA RAZÓN DE NO TENER VOZ
-     ["Podria pedirle a amigos que me presten su voz","chinx/2","chinx:voice="+url["chinx_voice"]+";control:speed=60,paget=950,reproAuto=false,repro=false"],
+     ["Podria pedirle a amigos que me presten su voz","chinx/2","chinx:voice=%chinx%;control:speed=60,paget=950,reproAuto=false,repro=false"],
      ["De hecho, se quien puede prestarme su voz","chinx/3",""],
      ["Pero Zoey no tendria voz y no podria usar Loquendo","chinx/2",""],
      ["Imagina esto","chinx/2","control:paget=950,reproAuto=true,repro=true"],

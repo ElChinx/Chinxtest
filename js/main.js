@@ -377,7 +377,8 @@ function bs(p){
                          }
                          
                     }else{
-                         control[pro[0]] = pro[1];
+                         // HERE!
+                         control[pro[0]] = con(pro[1]);
                     }
                     
                     // console.log("Nuevo valor: "+ control[pro[0]]);
