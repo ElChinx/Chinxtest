@@ -260,7 +260,7 @@ var historyTest =
      ["","chinx/20","function:musics=hard+play+false+0.5,bg=3;control:paget=500,reproAuto=true,repro=true"],
      ["","chinx/22","control:reproAuto=true,repro=true"],
      ["REGRESA! REGRESA!","chinx/23","control:paget=1000,speed=50"],
-     ["","chinx/24","control:paget=700,"],
+     ["","chinx/24","control:paget=700"],
      ["","chinx/24","control:paget=950,speed=50;function:bg=4,musics=hard+stop"],
      ["Creo que es suficiente","chinx/25",""],
      ["¿que más sigue?","chinx/26","control:paget=950,reproAuto=false,repro=false"],
